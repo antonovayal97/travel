@@ -56,24 +56,32 @@ export function HeroBlock({
           </div>
 
           {statistics?.length ? (
-            <div className="mt-10 grid max-w-lg grid-cols-2 gap-3 sm:grid-cols-3">
-              {statistics.map((stat, index) => (
-                <div
-                  key={`${stat.value}-${stat.label}`}
-                  className={cn(
-                    'min-w-0 rounded-[1.25rem] bg-white px-3 py-3 shadow-[var(--shadow-soft)] sm:px-4',
-                    index === statistics.length - 1 && statistics.length === 3 && 'col-span-2 sm:col-span-1',
-                  )}
-                >
-                  <AnimatedCounter
-                    value={stat.value}
-                    className="font-display text-2xl text-[var(--color-charcoal)] md:text-3xl"
-                  />
-                  <p className="mt-0.5 text-[0.7rem] font-medium leading-snug text-[var(--color-muted)] sm:text-xs">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-10 max-w-lg overflow-hidden rounded-[1.25rem] bg-white shadow-[var(--shadow-soft)] ring-1 ring-[var(--color-border)]">
+              <div
+                className="grid divide-[var(--color-border)]"
+                style={{ gridTemplateColumns: `repeat(${statistics.length}, minmax(0, 1fr))` }}
+              >
+                {statistics.map((stat, index) => (
+                  <div
+                    key={`${stat.value}-${stat.label}`}
+                    className={cn(
+                      'flex min-w-0 flex-col items-center px-2 py-3.5 text-center sm:px-4 sm:py-4',
+                      index > 0 && 'border-l border-[var(--color-border)]',
+                    )}
+                  >
+                    <AnimatedCounter
+                      value={stat.value}
+                      className="font-display text-[clamp(1.35rem,4.5vw,1.875rem)] leading-none text-[var(--color-charcoal)] md:text-3xl"
+                    />
+                    <p
+                      lang="ru"
+                      className="mt-1.5 max-w-[5.75rem] text-[0.625rem] font-medium leading-[1.35] text-[var(--color-muted)] hyphens-auto sm:max-w-none sm:text-xs sm:leading-snug"
+                    >
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           ) : null}
         </FadeUp>
