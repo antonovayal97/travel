@@ -17,11 +17,7 @@ function normalizeMediaPath(url: string): string {
   if (url.startsWith('/')) return url
   try {
     const parsed = new URL(url)
-    if (
-      parsed.hostname === 'localhost' ||
-      parsed.hostname === '127.0.0.1' ||
-      parsed.hostname.startsWith('192.168.')
-    ) {
+    if (parsed.pathname.startsWith('/api/media/file/')) {
       return parsed.pathname
     }
   } catch {
@@ -35,6 +31,7 @@ export function getMediaUrl(
 ): string | null {
   if (!media) return null
   if (typeof media === 'string') return normalizeMediaPath(media)
+  if (media.filename) return `/api/media/file/${media.filename}`
   if (media.url) return normalizeMediaPath(media.url)
   return null
 }

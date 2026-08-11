@@ -1,4 +1,8 @@
 import type { CollectionConfig } from 'payload'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const mediaDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../media')
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -13,7 +17,7 @@ export const Media: CollectionConfig = {
     defaultColumns: ['filename', 'alt', 'updatedAt'],
   },
   upload: {
-    staticDir: 'media',
+    staticDir: mediaDir,
     mimeTypes: ['image/*'],
     imageSizes: [
       {

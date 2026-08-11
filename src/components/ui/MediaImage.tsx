@@ -40,7 +40,11 @@ export function MediaImage({
 
   let src = getMediaUrl(media)
   if (sizeHint && media.sizes?.[sizeHint]?.url) {
-    src = getMediaUrl({ url: media.sizes[sizeHint]?.url }) || src
+    src =
+      getMediaUrl({
+        url: media.sizes[sizeHint]?.url,
+        filename: media.sizes[sizeHint]?.url?.split('/').pop() || undefined,
+      }) || src
   }
 
   if (!src) return null
