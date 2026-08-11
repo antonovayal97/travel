@@ -147,7 +147,7 @@ async function refresh() {
 
   const heroId = await ensureImage(siteImages.hero, 'homepage-hero.jpg')
   const storyId = await ensureImage(siteImages.story, 'homepage-story.jpg')
-  const galleryIds = []
+  const galleryIds: string[] = []
   for (const [index, image] of siteImages.gallery.entries()) {
     galleryIds.push(await ensureImage(image, `gallery-${index + 1}.jpg`))
   }

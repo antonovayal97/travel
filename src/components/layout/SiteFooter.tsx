@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Plane } from 'lucide-react'
+import { DeveloperCredit } from '@/components/layout/DeveloperCredit'
 
 type FooterLink = { label: string; href: string }
 type FooterColumn = { title: string; links?: FooterLink[] | null }
@@ -73,18 +74,23 @@ export function SiteFooter({
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-[var(--color-border)] pt-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-sm text-[var(--color-muted)]">{copyright}</p>
-          <div className="flex flex-wrap gap-4">
-            {legalLinks?.map((link) => (
-              <Link
-                key={`${link.label}-${link.href}`}
-                href={link.href}
-                className="text-sm text-[var(--color-muted)] hover:text-[var(--color-charcoal)]"
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div className="mt-12 flex flex-col gap-6 border-t border-[var(--color-border)] pt-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <p className="text-sm text-[var(--color-muted)]">{copyright}</p>
+            <div className="flex flex-wrap gap-4">
+              {legalLinks?.map((link) => (
+                <Link
+                  key={`${link.label}-${link.href}`}
+                  href={link.href}
+                  className="text-sm text-[var(--color-muted)] hover:text-[var(--color-charcoal)]"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-start md:justify-end">
+            <DeveloperCredit />
           </div>
         </div>
       </div>
