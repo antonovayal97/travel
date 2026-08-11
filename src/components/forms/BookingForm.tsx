@@ -4,6 +4,7 @@ import { Controller, useForm, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/Button'
+import { CustomDatePicker } from '@/components/ui/CustomDatePicker'
 import { formatRuPhone } from '@/lib/phone'
 import {
   applicationSchema,
@@ -135,12 +136,20 @@ export function BookingForm({
         </Field>
 
         <Field label="Дата путешествия" error={errors.travelDate?.message}>
-          <input
-            {...register('travelDate')}
-            type="date"
-            className={fieldClass(errors.travelDate)}
-            min={new Date().toISOString().slice(0, 10)}
-            aria-invalid={Boolean(errors.travelDate)}
+          <Controller
+            name="travelDate"
+            control={control}
+            render={({ field }) => (
+              <CustomDatePicker
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                min={new Date().toISOString().slice(0, 10)}
+                hasError={Boolean(errors.travelDate)}
+                placeholder="Выберите дату"
+                aria-label="Дата путешествия"
+              />
+            )}
           />
         </Field>
 

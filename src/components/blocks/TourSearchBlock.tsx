@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { CustomSelect } from '@/components/ui/CustomSelect'
+import { CustomDatePicker } from '@/components/ui/CustomDatePicker'
 
 type DestinationOption = { label: string; value: string }
 
@@ -71,11 +72,12 @@ export function TourSearchBlock({
           </label>
           <label className="space-y-1.5">
             <span className="text-xs font-bold text-[var(--color-muted)]">Дата</span>
-            <input
-              type="date"
+            <CustomDatePicker
+              aria-label="Дата поездки"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="field-input"
+              onChange={setDate}
+              min={new Date().toISOString().slice(0, 10)}
+              placeholder="Когда"
             />
           </label>
           <label className="space-y-1.5">
