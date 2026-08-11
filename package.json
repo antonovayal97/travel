@@ -1,7 +1,7 @@
 {
   "name": "travel",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "Premium travel website with Next.js and Payload CMS",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -15,21 +15,37 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/scripts/seed.ts",
+    "seed:hot": "cross-env NODE_OPTIONS=--no-deprecation tsx src/scripts/seed-hot-tours.ts",
+    "seed:images": "cross-env NODE_OPTIONS=--no-deprecation tsx src/scripts/refresh-images.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.7.1",
+    "@payloadcms/db-mongodb": "3.87.1",
     "@payloadcms/next": "3.87.1",
+    "@payloadcms/plugin-seo": "^3.87.1",
     "@payloadcms/richtext-lexical": "3.87.1",
     "@payloadcms/ui": "3.87.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
+    "framer-motion": "^13.1.0",
     "graphql": "^16.8.1",
+    "lucide-react": "^1.31.0",
     "next": "16.3.0",
     "payload": "3.87.1",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "react-hook-form": "^7.85.0",
     "sharp": "0.34.2",
-    "@payloadcms/db-mongodb": "3.87.1"
+    "sonner": "^2.0.8",
+    "swiper": "^14.1.0",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

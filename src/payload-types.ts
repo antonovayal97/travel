@@ -69,6 +69,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    destinations: Destination;
+    tours: Tour;
+    testimonials: Testimonial;
+    team: Team;
+    faqs: Faq;
+    applications: Application;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +84,12 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    destinations: DestinationsSelect<false> | DestinationsSelect<true>;
+    tours: ToursSelect<false> | ToursSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    applications: ApplicationsSelect<false> | ApplicationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,8 +99,18 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-settings': SiteSetting;
+    header: Header;
+    footer: Footer;
+    homepage: Homepage;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -148,7 +170,11 @@ export interface User {
  */
 export interface Media {
   id: string;
+  /**
+   * Описание изображения для доступности и SEO
+   */
   alt: string;
+  caption?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -160,6 +186,276 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "destinations".
+ */
+export interface Destination {
+  id: string;
+  title: string;
+  /**
+   * URL: /destinations/slug
+   */
+  slug: string;
+  country: string;
+  shortDescription: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  bestTimeToVisit?: string | null;
+  averagePrice?: number | null;
+  featured?: boolean | null;
+  coordinates?: {
+    lat?: number | null;
+    lng?: number | null;
+  };
+  highlights?:
+    | {
+        title: string;
+        description?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  heroImage: string | Media;
+  gallery?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Метаданные для поисковых систем и соцсетей
+   */
+  seo?: {
+    /**
+     * Если пусто — используется заголовок страницы
+     */
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+    noIndex?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tours".
+ */
+export interface Tour {
+  id: string;
+  title: string;
+  /**
+   * URL: /tours/slug
+   */
+  slug: string;
+  shortDescription: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  destination: string | Destination;
+  duration: number;
+  price: number;
+  oldPrice?: number | null;
+  currency?: ('RUB' | 'USD' | 'EUR') | null;
+  rating?: number | null;
+  reviewsCount?: number | null;
+  tourType: 'adventure' | 'culture' | 'relax' | 'gastronomy' | 'nature' | 'romance' | 'family';
+  difficulty?: ('easy' | 'medium' | 'hard') | null;
+  maxPeople?: number | null;
+  featured?: boolean | null;
+  published?: boolean | null;
+  heroImage: string | Media;
+  gallery?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  itinerary?:
+    | {
+        day: number;
+        title: string;
+        description: string;
+        image?: (string | null) | Media;
+        locations?:
+          | {
+              name: string;
+              id?: string | null;
+            }[]
+          | null;
+        meals?: ('breakfast' | 'lunch' | 'dinner')[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  included?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  notIncluded?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  accommodation?: string | null;
+  transport?: string | null;
+  guide?: string | null;
+  /**
+   * Метаданные для поисковых систем и соцсетей
+   */
+  seo?: {
+    /**
+     * Если пусто — используется заголовок страницы
+     */
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+    noIndex?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  name: string;
+  avatar?: (string | null) | Media;
+  text: string;
+  rating: number;
+  tour?: (string | null) | Tour;
+  destination?: (string | null) | Destination;
+  date?: string | null;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: string;
+  name: string;
+  position: string;
+  photo: string | Media;
+  bio?: string | null;
+  socialLinks?:
+    | {
+        platform: 'instagram' | 'telegram' | 'vk' | 'linkedin';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  category?: ('general' | 'booking' | 'payment' | 'tours' | 'visa') | null;
+  order?: number | null;
+  published?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications".
+ */
+export interface Application {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  destination?: (string | null) | Destination;
+  tour?: (string | null) | Tour;
+  travelDate?: string | null;
+  travelersCount?: number | null;
+  budget?: string | null;
+  comment?: string | null;
+  status: 'new' | 'contacted' | 'inProgress' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -192,6 +488,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'destinations';
+        value: string | Destination;
+      } | null)
+    | ({
+        relationTo: 'tours';
+        value: string | Tour;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'team';
+        value: string | Team;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'applications';
+        value: string | Application;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -263,6 +583,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -274,6 +595,242 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        hero?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        og?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "destinations_select".
+ */
+export interface DestinationsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  country?: T;
+  shortDescription?: T;
+  description?: T;
+  bestTimeToVisit?: T;
+  averagePrice?: T;
+  featured?: T;
+  coordinates?:
+    | T
+    | {
+        lat?: T;
+        lng?: T;
+      };
+  highlights?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  heroImage?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tours_select".
+ */
+export interface ToursSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  shortDescription?: T;
+  description?: T;
+  destination?: T;
+  duration?: T;
+  price?: T;
+  oldPrice?: T;
+  currency?: T;
+  rating?: T;
+  reviewsCount?: T;
+  tourType?: T;
+  difficulty?: T;
+  maxPeople?: T;
+  featured?: T;
+  published?: T;
+  heroImage?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  itinerary?:
+    | T
+    | {
+        day?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        locations?:
+          | T
+          | {
+              name?: T;
+              id?: T;
+            };
+        meals?: T;
+        id?: T;
+      };
+  included?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  notIncluded?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  accommodation?: T;
+  transport?: T;
+  guide?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  avatar?: T;
+  text?: T;
+  rating?: T;
+  tour?: T;
+  destination?: T;
+  date?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  position?: T;
+  photo?: T;
+  bio?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  category?: T;
+  order?: T;
+  published?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications_select".
+ */
+export interface ApplicationsSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  email?: T;
+  destination?: T;
+  tour?: T;
+  travelDate?: T;
+  travelersCount?: T;
+  budget?: T;
+  comment?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -314,6 +871,409 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  companyName: string;
+  logo?: (string | null) | Media;
+  phone?: string | null;
+  email?: string | null;
+  address?: string | null;
+  telegram?: string | null;
+  instagram?: string | null;
+  vk?: string | null;
+  workingHours?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  logo?: (string | null) | Media;
+  navigation?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  ctaText?: string | null;
+  ctaLink?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  columns?:
+    | {
+        title: string;
+        links?:
+          | {
+              label: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  socialLinks?:
+    | {
+        platform: 'instagram' | 'telegram' | 'vk';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  legalLinks?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  layout: (
+    | {
+        eyebrow?: string | null;
+        title: string;
+        description: string;
+        backgroundImage: string | Media;
+        primaryButton: {
+          label: string;
+          href: string;
+        };
+        secondaryButton: {
+          label: string;
+          href: string;
+        };
+        statistics?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        title?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'tourSearch';
+      }
+    | {
+        eyebrow?: string | null;
+        title: string;
+        description?: string | null;
+        limit?: number | null;
+        showFeaturedOnly?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'destinations';
+      }
+    | {
+        eyebrow?: string | null;
+        title: string;
+        description?: string | null;
+        limit?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'featuredTours';
+      }
+    | {
+        eyebrow?: string | null;
+        title: string;
+        description: string;
+        image: string | Media;
+        cta: {
+          label: string;
+          href: string;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'story';
+      }
+    | {
+        title?: string | null;
+        items?:
+          | {
+              title: string;
+              description: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'benefits';
+      }
+    | {
+        eyebrow?: string | null;
+        title: string;
+        limit?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'testimonials';
+      }
+    | {
+        title?: string | null;
+        images?:
+          | {
+              image: string | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+      }
+    | {
+        title: string;
+        description?: string | null;
+        primaryButton: {
+          label: string;
+          href: string;
+        };
+        backgroundImage?: (string | null) | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'cta';
+      }
+  )[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  companyName?: T;
+  logo?: T;
+  phone?: T;
+  email?: T;
+  address?: T;
+  telegram?: T;
+  instagram?: T;
+  vk?: T;
+  workingHours?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  navigation?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  ctaText?: T;
+  ctaLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  copyright?: T;
+  legalLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              backgroundImage?: T;
+              primaryButton?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryButton?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              statistics?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        tourSearch?:
+          | T
+          | {
+              title?: T;
+              id?: T;
+              blockName?: T;
+            };
+        destinations?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              limit?: T;
+              showFeaturedOnly?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featuredTours?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        story?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              image?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        benefits?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              title?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButton?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
