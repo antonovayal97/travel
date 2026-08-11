@@ -5,6 +5,7 @@ import { MediaImage } from '@/components/ui/MediaImage'
 import { Button } from '@/components/ui/Button'
 import { FadeUp } from '@/components/motion/FadeUp'
 import { AnimatedCounter } from '@/components/motion/FadeUp'
+import { cn } from '@/lib/utils'
 
 type HeroProps = {
   eyebrow?: string | null
@@ -55,17 +56,22 @@ export function HeroBlock({
           </div>
 
           {statistics?.length ? (
-            <div className="mt-10 grid max-w-lg grid-cols-3 gap-3">
-              {statistics.map((stat) => (
+            <div className="mt-10 grid max-w-lg grid-cols-2 gap-3 sm:grid-cols-3">
+              {statistics.map((stat, index) => (
                 <div
                   key={`${stat.value}-${stat.label}`}
-                  className="rounded-[1.25rem] bg-white px-3 py-3 shadow-[var(--shadow-soft)]"
+                  className={cn(
+                    'min-w-0 rounded-[1.25rem] bg-white px-3 py-3 shadow-[var(--shadow-soft)] sm:px-4',
+                    index === statistics.length - 1 && statistics.length === 3 && 'col-span-2 sm:col-span-1',
+                  )}
                 >
                   <AnimatedCounter
                     value={stat.value}
                     className="font-display text-2xl text-[var(--color-charcoal)] md:text-3xl"
                   />
-                  <p className="mt-0.5 text-xs font-medium text-[var(--color-muted)]">{stat.label}</p>
+                  <p className="mt-0.5 text-[0.7rem] font-medium leading-snug text-[var(--color-muted)] sm:text-xs">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
