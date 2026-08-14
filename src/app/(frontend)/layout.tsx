@@ -1,21 +1,26 @@
 import type { Metadata } from 'next'
-import { Manrope } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Toaster } from 'sonner'
 import { SiteHeader } from '@/components/navigation/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { getFooter, getHeader, getSiteSettings } from '@/lib/payload'
 import './styles.css'
 
-const sans = Manrope({
-  subsets: ['latin', 'cyrillic'],
+const manrope = localFont({
+  src: [
+    {
+      path: '../../fonts/manrope-cyrillic-wght-normal.woff2',
+      weight: '200 800',
+      style: 'normal',
+    },
+    {
+      path: '../../fonts/manrope-latin-wght-normal.woff2',
+      weight: '200 800',
+      style: 'normal',
+    },
+  ],
   variable: '--font-sans',
-  weight: ['400', '500', '600', '700', '800'],
-})
-
-const display = Manrope({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-display',
-  weight: ['700', '800'],
+  display: 'swap',
 })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -71,7 +76,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
   }
 
   return (
-    <html lang="ru" className={`${sans.variable} ${display.variable}`}>
+    <html lang="ru" className={manrope.variable}>
       <body>
         <script
           type="application/ld+json"

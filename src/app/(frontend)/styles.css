@@ -35,6 +35,7 @@
 }
 
 html {
+  --font-display: var(--font-sans);
   scroll-behavior: smooth;
 }
 
