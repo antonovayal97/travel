@@ -18,7 +18,7 @@ export function DestinationCard({ destination, large }: DestinationCardProps) {
   return (
     <Link
       href={`/destinations/${destination.slug}`}
-      className={`group relative block overflow-hidden rounded-[1.5rem] shadow-[var(--shadow-soft)] ${
+      className={`group relative block overflow-hidden rounded-[1.5rem] ${
         large ? 'min-h-[24rem] md:min-h-[30rem]' : 'min-h-[20rem] md:min-h-[24rem]'
       }`}
     >
@@ -73,7 +73,7 @@ export function TourCard({ tour }: TourCardProps) {
   return (
     <Link
       href={`/tours/${tour.slug}`}
-      className="group block overflow-hidden rounded-[1.5rem] bg-white shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
+      className="group block overflow-hidden rounded-[1.5rem] border border-[var(--color-border)] bg-white transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-[5/4] overflow-hidden">
         <MediaImage
@@ -84,7 +84,7 @@ export function TourCard({ tour }: TourCardProps) {
           className="transition-transform duration-500 group-hover:scale-105"
         />
         {tour.rating ? (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-2xl bg-white px-2.5 py-1 text-xs font-bold text-[var(--color-charcoal)] shadow-sm">
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-2xl bg-white px-2.5 py-1 text-xs font-bold text-[var(--color-charcoal)]">
             <Star className="size-3.5 fill-[var(--color-accent)] text-[var(--color-accent)]" />
             {tour.rating.toFixed(1)}
           </span>

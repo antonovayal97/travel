@@ -194,9 +194,9 @@ export function CustomDatePicker({
           className={cn(
             'custom-date-trigger group flex min-w-0 flex-1 items-center justify-between gap-3 rounded-[var(--radius-md)] border-[1.5px] border-[var(--color-border)] bg-[#f8fafc] px-4 py-[0.95rem] text-left text-[0.95rem] font-semibold text-[var(--color-charcoal)] outline-none transition-all duration-200',
             'hover:border-[rgba(26,29,38,0.18)] hover:bg-white',
-            'focus-visible:border-[var(--color-accent)] focus-visible:bg-white focus-visible:shadow-[0_0_0_4px_rgba(255,149,0,0.18)]',
+            'focus-visible:border-[var(--color-accent)] focus-visible:bg-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-[rgba(255,149,0,0.18)] focus-visible:outline-offset-0',
             open &&
-              'border-[var(--color-accent)] bg-white shadow-[0_0_0_4px_rgba(255,149,0,0.18)]',
+              'border-[var(--color-accent)] bg-white outline outline-4 outline-[rgba(255,149,0,0.18)] outline-offset-0',
             hasError && 'field-input-error',
             disabled && 'cursor-not-allowed opacity-50',
             !displayLabel && 'text-[var(--color-muted)]',
@@ -215,7 +215,7 @@ export function CustomDatePicker({
 
           <span
             className={cn(
-              'flex size-7 shrink-0 items-center justify-center rounded-xl bg-white text-[var(--color-muted)] shadow-[var(--shadow-soft)] transition-colors',
+              'flex size-7 shrink-0 items-center justify-center rounded-xl bg-white text-[var(--color-muted)] transition-colors',
               open && 'bg-[rgba(255,149,0,0.1)] text-[var(--color-accent)]',
             )}
           >
@@ -250,7 +250,7 @@ export function CustomDatePicker({
             : 'pointer-events-none -translate-y-1 scale-[0.98] opacity-0',
         )}
       >
-        <div className="rounded-[1.15rem] border border-[var(--color-border)] bg-white p-4 shadow-[var(--shadow-lift)]">
+        <div className="rounded-[1.15rem] border border-[var(--color-border)] bg-white p-4">
           <div className="mb-4 flex items-center justify-between gap-2">
             <button
               type="button"
@@ -304,7 +304,7 @@ export function CustomDatePicker({
                   className={cn(
                     'flex h-10 items-center justify-center rounded-xl text-sm font-semibold transition-colors',
                     selected &&
-                      'bg-[var(--color-accent)] text-white shadow-[0_8px_18px_rgba(255,149,0,0.28)]',
+                      'bg-[var(--color-accent)] text-white',
                     !selected &&
                       !disabledDay &&
                       'text-[var(--color-charcoal)] hover:bg-[rgba(255,149,0,0.1)] hover:text-[var(--color-accent-deep)]',

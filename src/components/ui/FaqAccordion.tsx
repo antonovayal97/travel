@@ -46,7 +46,7 @@ export function FaqAccordion({
               className={cn(
                 'overflow-hidden rounded-[var(--radius-lg)] border transition-colors duration-300',
                 isOpen
-                  ? 'border-[rgba(var(--color-accent-rgb),0.35)] bg-[var(--color-white)] shadow-[var(--shadow-soft)]'
+                  ? 'border-[rgba(var(--color-accent-rgb),0.35)] bg-[var(--color-white)]'
                   : 'border-[var(--color-border)] bg-[rgba(255,255,255,0.55)] hover:border-[rgba(26,29,38,0.16)] hover:bg-[var(--color-white)]',
               )}
             >

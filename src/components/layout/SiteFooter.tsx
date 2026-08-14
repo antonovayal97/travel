@@ -25,7 +25,7 @@ export function SiteFooter({
         <div className="grid gap-10 md:grid-cols-[1.3fr_repeat(3,1fr)]">
           <div>
             <p className="flex items-center gap-2 font-display text-2xl text-[var(--color-charcoal)]">
-              <span className="flex size-8 items-center justify-center rounded-xl bg-[var(--color-accent)] text-white shadow-[0_8px_18px_rgba(255,149,0,0.35)]">
+              <span className="flex size-8 items-center justify-center rounded-xl bg-[var(--color-accent)] text-white">
                 <Plane className="size-3.5" aria-hidden />
               </span>
               <span>

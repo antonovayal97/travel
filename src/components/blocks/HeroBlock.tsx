@@ -33,7 +33,7 @@ export function HeroBlock({
       <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 pb-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12 md:px-8 md:pb-6">
         <FadeUp>
           {eyebrow ? (
-            <p className="mb-4 inline-flex items-center gap-2 rounded-2xl bg-white px-3 py-1.5 text-sm font-bold text-[var(--color-accent)] shadow-[var(--shadow-soft)] ring-1 ring-[var(--color-border)]">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-2xl bg-white px-3 py-1.5 text-sm font-bold text-[var(--color-accent)] ring-1 ring-[var(--color-border)]">
               <Plane className="size-4" aria-hidden />
               {eyebrow}
             </p>
@@ -56,7 +56,7 @@ export function HeroBlock({
           </div>
 
           {statistics?.length ? (
-            <div className="mt-10 max-w-lg overflow-hidden rounded-[1.25rem] bg-white shadow-[var(--shadow-soft)] ring-1 ring-[var(--color-border)]">
+            <div className="mt-10 max-w-lg overflow-hidden rounded-[1.25rem] bg-white ring-1 ring-[var(--color-border)]">
               <div
                 className="grid divide-[var(--color-border)]"
                 style={{ gridTemplateColumns: `repeat(${statistics.length}, minmax(0, 1fr))` }}
@@ -89,7 +89,7 @@ export function HeroBlock({
         <FadeUp delay={0.1}>
           <div className="relative">
             <div className="absolute -inset-3 rounded-[2rem] bg-[var(--color-sand)] blur-sm" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-[var(--shadow-lift)] md:aspect-[5/6]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] md:aspect-[5/6]">
               <MediaImage
                 media={backgroundImage as never}
                 fill
@@ -99,7 +99,7 @@ export function HeroBlock({
                 className="animate-float"
               />
             </div>
-            <div className="absolute -bottom-4 left-4 right-4 rounded-[1.25rem] border border-[var(--color-border)] bg-white p-4 shadow-[var(--shadow-lift)] md:left-auto md:right-[-0.5rem] md:w-56">
+            <div className="absolute -bottom-4 left-4 right-4 rounded-[1.25rem] border border-[var(--color-border)] bg-white p-4 md:left-auto md:right-[-0.5rem] md:w-56">
               <p className="text-xs font-bold uppercase tracking-[0.08em] text-[var(--color-accent)]">
                 Лучшая цена
               </p>

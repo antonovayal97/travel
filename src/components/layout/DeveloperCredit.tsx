@@ -10,7 +10,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 
 export function DeveloperCredit() {
   return (
-    <div className="group inline-flex items-center gap-3 rounded-2xl border border-[var(--color-border)] bg-gradient-to-r from-[var(--color-sand)] to-[var(--color-white)] px-4 py-2.5 shadow-[var(--shadow-soft)] transition-all duration-300 hover:border-[rgba(var(--color-accent-rgb),0.35)] hover:from-[rgba(var(--color-accent-rgb),0.08)] hover:to-[var(--color-white)] hover:shadow-[0_12px_28px_rgba(255,149,0,0.1)]">
+    <div className="group inline-flex items-center gap-3 rounded-2xl border border-[var(--color-border)] bg-gradient-to-r from-[var(--color-sand)] to-[var(--color-white)] px-4 py-2.5 transition-all duration-300 hover:border-[rgba(var(--color-accent-rgb),0.35)] hover:from-[rgba(var(--color-accent-rgb),0.08)] hover:to-[var(--color-white)]">
       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[rgba(var(--color-accent-rgb),0.12)] text-[var(--color-accent)] transition-colors group-hover:bg-[rgba(var(--color-accent-rgb),0.18)]">
         <CodeXml className="h-4 w-4" aria-hidden />
       </div>

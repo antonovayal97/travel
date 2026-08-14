@@ -120,7 +120,7 @@ export function StoryBlockView({
     <section className="section-pad">
       <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 md:grid-cols-2 md:gap-16 md:px-8">
         <FadeUp>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-soft)]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)]">
             <MediaImage media={image as never} fill sizeHint="tablet" sizes="50vw" />
           </div>
         </FadeUp>
@@ -156,10 +156,10 @@ export function BenefitsBlockView({
           {items?.map((item, index) => (
             <StaggerItem
               key={item.id || item.title}
-              className="rounded-[1.5rem] bg-white p-6 shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1 md:p-7"
+              className="rounded-[1.5rem] border border-[var(--color-border)] bg-white p-6 transition-transform hover:-translate-y-1 md:p-7"
             >
               <div
-                className={`mb-5 flex size-12 items-center justify-center rounded-2xl font-display text-lg text-white shadow-[0_8px_20px_rgba(255,90,31,0.28)] ${
+                className={`mb-5 flex size-12 items-center justify-center rounded-2xl font-display text-lg text-white ${
                   index % 2 === 0
                     ? 'bg-[linear-gradient(135deg,#ff5a1f,#ff8a3d)]'
                     : 'bg-[linear-gradient(135deg,#ff8a3d,#ffb347)]'
@@ -201,7 +201,7 @@ export function TestimonialsBlockView({
           {testimonials.map((item) => (
             <StaggerItem
               key={item.id}
-              className="rounded-[1.5rem] bg-white p-6 shadow-[var(--shadow-soft)] md:p-7"
+              className="rounded-[1.5rem] border border-[var(--color-border)] bg-white p-6 md:p-7"
             >
               <p className="text-sm font-bold text-[var(--color-accent)]">
                 {'★'.repeat(item.rating)}
@@ -240,7 +240,7 @@ export function CTABlockView({
 }) {
   return (
     <section className="section-pad px-5 md:px-8">
-      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#1a1d26_0%,#2a303c_55%,#3a4250_100%)] px-6 py-14 text-white shadow-[var(--shadow-lift)] md:px-12 md:py-16">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#1a1d26_0%,#2a303c_55%,#3a4250_100%)] px-6 py-14 text-white md:px-12 md:py-16">
         <div className="absolute -right-10 -top-10 size-48 rounded-full bg-white/10 blur-2xl" />
         <div className="absolute -bottom-16 left-10 size-56 rounded-full bg-[rgba(255,149,0,0.15)] blur-2xl" />
         <FadeUp>

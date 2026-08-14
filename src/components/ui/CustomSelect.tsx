@@ -147,9 +147,9 @@ export function CustomSelect({
         className={cn(
           'custom-select-trigger group flex w-full items-center justify-between gap-3 rounded-[var(--radius-md)] border-[1.5px] border-[var(--color-border)] bg-[#f8fafc] px-4 py-[0.95rem] text-left text-[0.95rem] font-semibold text-[var(--color-charcoal)] outline-none transition-all duration-200',
           'hover:border-[rgba(26,29,38,0.18)] hover:bg-white',
-          'focus-visible:border-[var(--color-accent)] focus-visible:bg-white focus-visible:shadow-[0_0_0_4px_rgba(255,149,0,0.18)]',
+          'focus-visible:border-[var(--color-accent)] focus-visible:bg-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-[rgba(255,149,0,0.18)] focus-visible:outline-offset-0',
           open &&
-            'border-[var(--color-accent)] bg-white shadow-[0_0_0_4px_rgba(255,149,0,0.18)]',
+            'border-[var(--color-accent)] bg-white outline outline-4 outline-[rgba(255,149,0,0.18)] outline-offset-0',
           disabled && 'cursor-not-allowed opacity-50',
           !selectedOption && 'text-[var(--color-muted)]',
         )}
@@ -157,7 +157,7 @@ export function CustomSelect({
         <span className="truncate">{displayLabel}</span>
         <span
           className={cn(
-            'flex size-7 shrink-0 items-center justify-center rounded-xl bg-white text-[var(--color-muted)] shadow-[var(--shadow-soft)] transition-transform duration-200',
+            'flex size-7 shrink-0 items-center justify-center rounded-xl bg-white text-[var(--color-muted)] transition-transform duration-200',
             open && 'rotate-180 bg-[rgba(255,149,0,0.1)] text-[var(--color-accent)]',
           )}
         >
@@ -183,7 +183,7 @@ export function CustomSelect({
             open && activeIndex >= 0 ? `${selectId}-option-${activeIndex}` : undefined
           }
           onKeyDown={onListKeyDown}
-          className="custom-select-menu max-h-64 overflow-auto rounded-[1.15rem] border border-[var(--color-border)] bg-white p-1.5 shadow-[var(--shadow-lift)]"
+          className="custom-select-menu max-h-64 overflow-auto rounded-[1.15rem] border border-[var(--color-border)] bg-white p-1.5"
         >
           {options.map((option, index) => {
             const selected = option.value === selectedValue

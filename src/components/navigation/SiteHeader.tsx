@@ -41,13 +41,13 @@ export function SiteHeader({
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled || open
-          ? 'border-b border-[var(--color-border)] bg-white/92 shadow-[var(--shadow-soft)] backdrop-blur-xl'
+          ? 'border-b border-[var(--color-border)] bg-white/92 backdrop-blur-xl'
           : 'bg-transparent',
       )}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-5 py-3.5 md:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-9 items-center justify-center rounded-2xl bg-[var(--color-accent)] text-white shadow-[0_8px_20px_rgba(255,149,0,0.35)]">
+          <span className="flex size-9 items-center justify-center rounded-2xl bg-[var(--color-accent)] text-white">
             <Plane className="size-4" aria-hidden />
           </span>
           <span className="font-display text-xl text-[var(--color-charcoal)]">

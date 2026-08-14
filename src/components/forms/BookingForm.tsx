@@ -82,7 +82,7 @@ export function BookingForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit, onInvalid)}
-      className="space-y-5 rounded-[1.5rem] bg-white p-6 shadow-[var(--shadow-lift)] md:p-8"
+      className="space-y-5 rounded-[1.5rem] border border-[var(--color-border)] bg-white p-6 md:p-8"
       noValidate
     >
       {tourTitle ? (

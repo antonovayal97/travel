@@ -49,7 +49,7 @@ export function TourSearchBlock({
     <section id="search" className="relative z-20 px-5 md:px-8">
       <form
         onSubmit={onSubmit}
-        className="surface relative z-30 mx-auto max-w-[1440px] overflow-visible border-0 p-5 shadow-[var(--shadow-lift)] md:p-6"
+        className="surface relative z-30 mx-auto max-w-[1440px] overflow-visible border border-[var(--color-border)] p-5 md:p-6"
       >
         {title ? (
           <p className="mb-4 flex items-center gap-2 font-display text-xl text-[var(--color-charcoal)] md:text-2xl">
